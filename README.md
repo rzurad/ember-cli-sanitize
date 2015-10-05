@@ -1,6 +1,17 @@
-# ember-sanitize
+# ember-cli-sanitize
 
 An Ember CLI addon to sanitize user provided content using [sanitize.js](https://github.com/gbirke/Sanitize.js).
+
+Forked from [minutebase/ember-sanitize](https://github.com/minutebase/ember-sanitize) and updated for
+Ember-CLI 1.13.8 and made sanitizers live on global Sanitize.Config object, rather than the application container,
+which should make testing (slightly easier).
+
+The current implementation is a little hacky in that it relies on a hash created by the ember-resolver to
+identify sanitizers defined in /app/sanitizers, so testing currently manually requires that the sanitizers be manually
+put onto the Sanitizer.Config global before the test runs. I'd love to fix this is a later version... if there is one.
+
+I also don't like that you need to run `ember generate ember-cli-sanitize` in order to get the sanitize.js vendor dependency
+into the consuming app.
 
 ## Using
 
@@ -9,7 +20,7 @@ An Ember CLI addon to sanitize user provided content using [sanitize.js](https:/
 Install this addon via npm:
 
 ```
-npm install --save-dev ember-sanitize
+npm install --save-dev rzurad/ember-cli-sanitize
 ```
 
 Then run the generator to install `sanitize.js`:
@@ -43,7 +54,7 @@ export default {
 You can then use this configuration by passing it in as the second argument to the helper:
 
 ```handlebars
-{{sanitize-html someValue "strict"}}
+{{sanitize-html someValue 'strict'}}
 ```
 
 ## Developing

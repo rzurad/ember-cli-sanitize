@@ -1,20 +1,36 @@
+import Ember from 'ember';
+
 /* global Sanitize */
 
-function sanitizeElement(element, config) {
-  var sanitizer = new Sanitize(config);
-  var cleaned   = document.createElement('div');
+Sanitize.Config = Sanitize.Config || {};
 
-  cleaned.appendChild(sanitizer.clean_node(element));
-  return cleaned.innerHTML;
+function sanitizeElement(element, config) {
+    if (typeof config === 'string') {
+        let name = config;
+
+        config = Sanitize.Config[name];
+        Ember.assert(`Sanitizer config '${config}' is not defined!`, config && typeof config === 'object');
+    }
+
+    let sanitizer = new Sanitize(config),
+        cleaned = document.createElement('div');
+
+    cleaned.appendChild(sanitizer.clean_node(element));
+
+    return cleaned.innerHTML;
 }
 
 function sanitize(html, config) {
-  var container = document.createElement('div');
-  container.innerHTML = html;
-  return sanitizeElement(container, config);
+    let container = document.createElement('div');
+
+    container.innerHTML = html;
+
+    return sanitizeElement(container, config);
 }
 
 export {
-  sanitize,
-  sanitizeElement
+    sanitize,
+    sanitizeElement
 };
+
+export default sanitize;
