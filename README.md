@@ -10,23 +10,14 @@ The current implementation is a little hacky in that it relies on a hash created
 identify sanitizers defined in /app/sanitizers, so testing currently manually requires that the sanitizers be manually
 put onto the Sanitizer.Config global before the test runs. I'd love to fix this is a later version... if there is one.
 
-I also don't like that you need to run `ember generate ember-cli-sanitize` in order to get the sanitize.js vendor dependency
-into the consuming app.
-
 ## Using
 
 ### Installation
 
-Install this addon via npm:
+Install this addon via Ember-CLI:
 
 ```
-npm install --save-dev rzurad/ember-cli-sanitize
-```
-
-Then run the generator to install `sanitize.js`:
-
-```
-ember generate ember-sanitize
+ember install rzurad/ember-cli-sanitize
 ```
 
 ### Usage
