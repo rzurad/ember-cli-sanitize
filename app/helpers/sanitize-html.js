@@ -1,4 +1,4 @@
-import { sanitize } from 'ember-sanitize/utils/sanitize';
+import { sanitize } from 'ember-cli-sanitize/utils/sanitize';
 import Ember from 'ember';
 
 export default Ember.Handlebars.makeBoundHelper(function(html, configName, options) {
